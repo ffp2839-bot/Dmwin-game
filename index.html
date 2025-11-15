@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DmWin — Premium Extreme</title>
+  <meta name="description" content="DmWin — Verified gift codes & instant bonuses. Premium UI with neon, reviews slider & support."/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-1:#05040a; --bg-2:#091229;
+      --muted:#cbd5e1; --accent-blue:#00d4ff; --accent-mag:#ff3d6d; --accent-gold:#ffb86b;
+      --glass: rgba(255,255,255,0.04);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      min-height:100vh;
+      background: radial-gradient(1200px 600px at 8% 10%, rgba(0,212,255,0.03), transparent 8%),
+                  radial-gradient(800px 400px at 92% 92%, rgba(255,61,109,0.02), transparent 6%),
+                  linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:#fff; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden; padding-bottom:120px; position:relative;
+    }
+
+    /* PRELOADER */
+    #preloader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,rgba(2,6,23,0.85),rgba(2,6,23,0.95));z-index:99999}
+    .loader{width:110px;height:110px;border-radius:50%;display:grid;place-items:center;position:relative;box-shadow:0 18px 80px rgba(0,0,0,0.6)}
+    .ring{position:absolute;inset:0;border-radius:50%;border:6px solid transparent;border-top-color:var(--accent-blue);animation:spin 1.4s linear infinite}
+    .ring.r2{border-top-color:var(--accent-mag);animation-duration:1.8s;transform:rotate(60deg)}
+    .loader .logo{font-weight:800;font-size:14px;color:var(--accent-gold);letter-spacing:0.6px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* particles */
+    #particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+    /* container */
+    .wrap{position:relative;z-index:20;max-width:1150px;margin:18px auto;padding:12px}
+
+    /* topbar */
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 12px;border-radius:14px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:56px;width:56px;border-radius:12px;object-fit:cover;box-shadow:0 12px 42px rgba(0,0,0,0.6)}
+    .brand h1{font-size:18px;letter-spacing:0.6px}
+    .nav-actions{display:flex;gap:8px;align-items:center}
+    .nav-btn{padding:10px 14px;border-radius:12px;font-weight:700;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));color:var(--muted)}
+    .nav-btn.primary{background:linear-gradient(90deg,var(--accent-gold),#ffd28a);color:#081018;border:0;box-shadow:0 14px 50px rgba(255,184,102,0.08)}
+    .nav-btn.alt{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .nav-btn.neon{box-shadow:0 12px 40px rgba(0,212,255,0.06);border:0;background:linear-gradient(90deg,var(--accent-blue),#00f3b3);color:#021124}
+
+    /* hero */
+    .hero{margin-top:12px;border-radius:18px;padding:22px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow:0 28px 80px rgba(2,6,23,0.6);overflow:hidden;display:grid;grid-template-columns:1fr 380px;gap:18px}
+    .hero-left{padding:6px 12px}
+    .headline h2{font-size:2.2rem;margin:0;color:#fff;text-shadow:0 10px 40px rgba(0,0,0,0.6)}
+    .sub{color:var(--muted);max-width:920px;text-align:left;font-size:1.02rem;margin-top:8px}
+
+    .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .cta-primary{padding:14px 26px;border-radius:999px;font-weight:900;text-decoration:none;background:linear-gradient(90deg,var(--accent-gold),#ffd28a);color:#071018}
+    .cta-secondary{padding:12px 18px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    /* right panel */
+    .panel{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .code-box{display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.04)}
+    .code{font-weight:900;letter-spacing:2px;font-size:1.06rem}
+    .btn-copy{padding:10px 14px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent-blue),#00f3b3);color:#021124;font-weight:800;cursor:pointer}
+
+    /* reviews slider */
+    .reviews{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+    .reviews-track{display:flex;gap:12px;transition:transform .6s cubic-bezier(.22,.9,.35,1);will-change:transform}
+    .review-card{min-width:240px;max-width:320px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .stars{color:#ffd166;margin-bottom:8px}
+    .reviewer{margin-top:10px;color:#fff;font-weight:700;font-size:13px}
+
+    .reviews-wrap{position:relative;padding:12px}
+    .rev-controls{display:flex;gap:8px;align-items:center;justify-content:flex-end}
+    .rev-arrow{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px;border-radius:8px;cursor:pointer}
+
+    /* footer & support */
+    footer{margin-top:20px;padding:18px;text-align:center;color:var(--muted);font-size:.92rem}
+    .support-fab{position:fixed;right:18px;bottom:18px;z-index:60;background:linear-gradient(90deg,#00d4ff,#ff8a6b);color:#021124;padding:12px 14px;border-radius:999px;font-weight:800;box-shadow:0 18px 50px rgba(0,0,0,0.5);display:flex;align-items:center;gap:8px}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr; padding:18px}
+      .brand img{height:46px}
+      .headline h2{font-size:1.6rem}
+      .reviews-track{gap:10px}
+    }
+  </style>
+</head>
+<body>
+  <!-- PRELOADER -->
+  <div id="preloader" aria-hidden="false">
+    <div class="loader" role="status" aria-label="Loading">
+      <div class="ring"></div>
+      <div class="ring r2"></div>
+      <div class="logo">DmWin</div>
+    </div>
+  </div>
+
+  <!-- PARTICLES -->
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <div class="wrap">
+    <!-- TOPBAR -->
+    <header class="topbar" role="banner" aria-label="Top bar">
+      <div class="brand" aria-label="DmWin brand">
+        <img src="assets/logo.png" alt="DmWin logo" id="site-logo" onerror="this.style.display='none'">
+        <div>
+          <h1>DmWin <span style="font-size:12px;color:var(--muted);font-weight:300">Premium Extreme</span></h1>
+          <div style="font-size:12px;color:var(--muted)">Verified Gift Codes & Instant Bonuses</div>
+        </div>
+      </div>
+
+      <div class="nav-actions" role="navigation">
+        <!-- Login goes to register page as requested -->
+        <a class="nav-btn alt" id="login-btn" href="https://www.dmwin.in/#/register?invitationCode=374263680477" target="_blank" rel="noopener">Login</a>
+        <a class="nav-btn primary neon nav-btn primary" id="register-btn" href="https://www.dmwin.in/#/register?invitationCode=374263680477" target="_blank" rel="noopener">Register</a>
+        <a class="nav-btn neon" href="https://t.me//@Teacherselvi" target="_blank" rel="noopener">Customer Service</a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main class="hero" role="main">
+      <div class="hero-left">
+        <div class="headline"><h2>🎁 DmWin — Instant Gift Codes & Bonuses</h2></div>
+        <p class="sub">Get verified gift codes, instant bonuses and cashback for top gaming & investment platforms. Trusted by Indian gamers — redeem and withdraw fast.</p>
+
+        <div class="ctas" role="group">
+          <a class="cta-primary" href="https://www.dmwin.in/#/register?invitationCode=374263680477" target="_blank" rel="noopener">🔥 Register & Claim</a>
+          <a class="cta-secondary" href="#how">How it works</a>
+        </div>
+
+        <!-- Features -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:16px;">
+          <div class="panel">
+            <strong>💯 Verified Codes</strong>
+            <div style="color:var(--muted);margin-top:6px">Manually tested every day.</div>
+          </div>
+          <div class="panel">
+            <strong>⚡ Instant Activation</strong>
+            <div style="color:var(--muted);margin-top:6px">Redeem & get bonuses immediately.</div>
+          </div>
+          <div class="panel">
+            <strong>🛡️ Secure</strong>
+            <div style="color:var(--muted);margin-top:6px">Privacy-first — no password storing.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL -->
+      <aside style="display:flex;flex-direction:column;gap:12px;">
+        <div class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+              <div style="font-weight:800">Instant Gift Code</div>
+              <div style="font-size:12px;color:var(--muted)">Claim & redeem instantly</div>
+            </div>
+            <div style="font-size:12px;color:var(--muted);text-align:right">Expires in <span id="expires">15:00</span></div>
+          </div>
+
+          <div style="height:10px"></div>
+
+          <div class="code-box" aria-live="polite">
+            <div class="code" id="code-text">DMWIN-92PAK-2025</div>
+            <button class="btn-copy" id="copy-code">COPY</button>
+          </div>
+
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button id="use-code" class="nav-btn primary" style="font-weight:900">Use Code</button>
+            <button id="view-proof" class="nav-btn">View Proof</button>
+          </div>
+        </div>
+
+        <!-- Reviews -->
+        <div class="panel reviews-wrap">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <strong style="color:var(--accent-gold)">User Reviews</strong>
+            <div class="rev-controls">
+              <button class="rev-arrow" id="prev-review" aria-label="Previous review">◀</button>
+              <button class="rev-arrow" id="next-review" aria-label="Next review">▶</button>
+            </div>
+          </div>
+
+          <div class="reviews" style="margin-top:12px">
+            <div style="overflow:hidden">
+              <div class="reviews-track" id="reviews-track" aria-live="polite">
+                <!-- review cards (fake premium style) -->
+                <div class="review-card">
+                  <div class="stars">⭐⭐⭐⭐⭐</div>
+                  <p>“Maine DmWin se code use karke ₹250 bonus liya — bilkul legit aur instantly credit hua. Support top.”</p>
+                  <div class="reviewer">— Rohit K., Lucknow</div>
+                </div>
+
+                <div class="review-card">
+                  <div class="stars">⭐⭐⭐⭐⭐</div>
+                  <p>“Daily hot drops milte hain, prediction accurate rehti hai. Best for serious gamers.”</p>
+                  <div class="reviewer">— Neha S., Mumbai</div>
+                </div>
+
+                <div class="review-card">
+                  <div class="stars">⭐⭐⭐⭐⭐</div>
+                  <p>“Fast payouts and clear proof screenshots — trust factor strong. Recommended!”</p>
+                  <div class="reviewer">— Arjun M., Delhi</div>
+                </div>
+
+                <div class="review-card">
+                  <div class="stars">⭐⭐⭐⭐</div>
+                  <p>“Simple to use UI, codes work instantly. Customer support responds fast on Telegram.”</p>
+                  <div class="reviewer">— Priya R., Bangalore</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+
+    <!-- HOW -->
+    <section id="how" style="margin-top:18px">
+      <div class="panel">
+        <h3 style="color:var(--accent-blue)">How It Works</h3>
+        <p style="color:var(--muted)">1) Join channel → 2) Copy verified code → 3) Redeem & collect instant rewards</p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© 2025 DmWin • Trusted in India • All Rights Reserved</div>
+      <div style="margin-top:6px;color:var(--muted)">Designed for gamers & investors • Fast payouts • Verified codes</div>
+    </footer>
+  </div>
+
+  <!-- floating support -->
+  <a class="support-fab" href="https://t.me//@Teacherselvi" target="_blank" rel="noopener" aria-label="Contact Support">💬 Support</a>
+
+  <!-- modal (reused) -->
+  <div id="modal-backdrop" style="display:none;position:fixed;inset:0;align-items:center;justify-content:center;background:rgba(0,0,0,0.65);z-index:9999">
+    <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;max-width:520px;margin:0 12px;">
+      <h4 id="modal-title">Open Link</h4>
+      <p id="modal-desc">Click below to open the requested page in a new tab.</p>
+      <div style="display:flex;gap:8px;justify-content:flex-end">
+        <a id="modal-go" class="nav-btn" href="#" target="_blank" rel="noopener">Open</a>
+        <button id="modal-close" class="nav-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Preloader hide
+    window.addEventListener('load', ()=>{
+      const pre = document.getElementById('preloader');
+      setTimeout(()=>{ pre.style.opacity='0'; pre.style.pointerEvents='none'; setTimeout(()=> pre.remove(),600); },500);
+    });
+
+    // Particles background (light)
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext && canvas.getContext('2d');
+    if(ctx){
+      let W = canvas.width = innerWidth, H = canvas.height = innerHeight;
+      const parts = [];
+      function rand(a,b){return Math.random()*(b-a)+a}
+      for(let i=0;i<100;i++) parts.push({x:rand(0,W), y:rand(0,H), r:rand(0.6,3.2), v:rand(0.05,0.4), c: i%3===0? 'rgba(0,212,255,0.06)': i%3===1? 'rgba(255,61,109,0.04)':'rgba(255,184,102,0.03)'});
+      addEventListener('resize', ()=>{W=canvas.width=innerWidth; H=canvas.height=innerHeight});
+      (function anim(){ ctx.clearRect(0,0,W,H); for(let p of parts){ p.y-=p.v; p.x+=Math.sin(Date.now()/8000+p.x)*0.2; if(p.y<-8){ p.y=H+8; p.x=Math.random()*W } ctx.beginPath(); ctx.fillStyle=p.c; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); } requestAnimationFrame(anim); })();
+    }
+
+    // Live counter (sim)
+    const live = document.getElementById('live-count');
+    if(live){ let c = Math.floor(Math.random()*420)+80; setInterval(()=>{ c += Math.floor(Math.random()*3-1); if(c<20) c=20; live.textContent=c },3000) }
+
+    // Modal controls (for register/login reuse)
+    const registerLink = "https://www.dmwin.in/#/register?invitationCode=374263680477";
+    const openReg = document.getElementById('register-btn');
+    const openLog = document.getElementById('login-btn');
+    const modal = document.getElementById('modal-backdrop');
+    const modalGo = document.getElementById('modal-go');
+    const modalClose = document.getElementById('modal-close');
+    if(openReg){ openReg.addEventListener('click', ()=>{ /* direct link - nothing */ }) }
+    if(openLog){ openLog.addEventListener('click', ()=>{ /* direct link - nothing */ }) }
+    if(modalClose){ modalClose.addEventListener('click', ()=> modal.style.display='none') }
+
+    // Copy code + expire timer + confetti
+    const codeText = document.getElementById('code-text');
+    const copyBtn = document.getElementById('copy-code');
+    const expires = document.getElementById('expires');
+    let expireSeconds = 15*60;
+    if(copyBtn){
+      copyBtn.addEventListener('click', async ()=>{
+        try{ await navigator.clipboard.writeText(codeText.textContent); copyBtn.textContent='COPIED'; setTimeout(()=>copyBtn.textContent='COPY',2000); fireConfetti(); }
+        catch(e){ alert('Copy failed — long-press on mobile and copy.'); }
+      });
+    }
+    setInterval(()=>{ if(expireSeconds>0){ expireSeconds--; const m=Math.floor(expireSeconds/60).toString().padStart(2,'0'); const s=(expireSeconds%60).toString().padStart(2,'0'); expires.textContent = m+':'+s } else { expires.textContent='00:00' } },1000);
+
+    function fireConfetti(){
+      const count = 20;
+      for(let i=0;i<count;i++){
+        const el = document.createElement('div');
+        el.style.position='fixed';
+        el.style.left = (50 + Math.random()*60-30) + '%';
+        el.style.top = '45%';
+        el.style.width = '8px';
+        el.style.height = '12px';
+        el.style.background = ['#00d4ff','#ff3d6d','#ffb86b'][Math.floor(Math.random()*3)];
+        el.style.zIndex = 99999;
+        el.style.borderRadius = '2px';
+        document.body.appendChild(el);
+        const dx = (Math.random()*600-300);
+        const dy = (Math.random()*400-50);
+        el.animate([{transform:'translate(0,0) rotate(0deg)', opacity:1},{transform:`translate(${dx}px,${dy}px) rotate(360deg)`, opacity:0}],{duration:1200+Math.random()*800,easing:'cubic-bezier(.2,.8,.2,1)'});
+        setTimeout(()=>el.remove(),2200);
+      }
+    }
+
+    // Use Code button
+    const useBtn = document.getElementById('use-code');
+    if(useBtn) useBtn.addEventListener('click', ()=> window.open('https://t.me/DMWINHACKPREDICT','_blank'));
+
+    // Reviews slider logic
+    (function(){
+      const track = document.getElementById('reviews-track');
+      const prev = document.getElementById('prev-review');
+      const next = document.getElementById('next-review');
+      if(!track || !prev || !next) return;
+      const cards = Array.from(track.children);
+      let idx = 0;
+      const cardWidth = cards[0].getBoundingClientRect().width + 12; // gap
+      function update(){ track.style.transform = `translateX(${ -idx * (cardWidth) }px)` }
+      next.addEventListener('click', ()=>{ idx = Math.min(idx+1, cards.length-1); update(); resetAuto() });
+      prev.addEventListener('click', ()=>{ idx = Math.max(idx-1, 0); update(); resetAuto() });
+      // responsive recalc
+      window.addEventListener('resize', ()=>{ /* recalc not strictly necessary */ });
+      // autoplay
+      let auto = setInterval(()=>{ idx = (idx+1) % cards.length; update(); }, 3500);
+      function resetAuto(){ clearInterval(auto); auto = setInterval(()=>{ idx = (idx+1) % cards.length; update(); }, 3500); }
+      // initial
+      update();
+    })();
+
+    // accessibility: smooth anchor
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+  </script>
+</body>
+  </html>
